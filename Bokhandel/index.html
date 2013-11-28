@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<title>XXX</title>
+		<title>Inmatning</title>
 		<meta http-equiv="Content-Type"	content="text/html; charset=UTF-8">
 		<!-- Meyer Reset -->
 		<link rel="stylesheet" type="text/css" href="css/meyerReset.css">
@@ -28,64 +28,69 @@
 		<form>
 			<br>
 			<fieldset class="left">
-				<label>ISBN:</label>
-				<input type="text">
-				<br>
-				<label>Personal-ID</label>
-				<select id="personal_ID"></select> <!-- Add employees dynamically -->
-				<br>
-				<label>Nya varor</label>
-				<input type="radio" name="typ" value="add"> <!-- make this default! -->
-				<label>Inventering</label>
-				<input type="radio" name="typ" value="change">
+				<label>Generell sök:</label>
+				<input type="text" id="search">
 			</fieldset>
 			<fieldset class="right">
-
-				<label class="antal">Lägg till antal:</label>
-				<input type="text" class="antal">
-				<span>Lagersaldo:<span class="lager"></span></span>
+				<legend>Författare och bokinfo</legend>
+				<label>Efternamn:</label>
+				<input type="text" id="author_last_name">
 				<br>
-			</fieldset>
-			<fieldset class="right">
-				<label>Kategori:</label>
-				<input type="text">
+				<label>Förnamn:</label>
+				<input type="text" id="author_last_name">
 				<br>
-				<label>Hyllplats:</label>
-				<input type="text">
+				<label>Titel:</label>
+				<input type="text" id="title">
+				<br>
+				<label>Förlag:</label>
+				<input type="text" id="publisher">
+				<br>
+				<label>Utgivningsår:</label>
+				<input type="text" id="publishing_year">
+				<br>
+				<label>Språk:</label>
+				<input type="text" id="language">
 				<br>
 			</fieldset>
 
 			<fieldset class="left">
-				<legend>Författare och bokinfo</legend>
-				<label>Efternamn:</label>
-				<input type="text">
+				<label>ISBN:</label>
+				<input type="text" id="isbn">
 				<br>
-				<label>Förnamn:</label>
-				<input type="text">
+				<label>Personal-ID</label>
+				<select id="employee_id"></select> <!-- Add employees dynamically -->
 				<br>
-				<label>Titel:</label>
-				<input type="text">
-				<br>
-				<label>Förlag:</label>
-				<input type="text">
-				<br>
-				<label>Utgivningsår:</label>
-				<input type="text">
-				<br>
-				<label>Språk:</label>
-				<input type="text">
+				<label>Nya varor</label>
+				<input type="radio" name="type" value="add"> <!-- make this default! -->
+				<label>Inventering</label>
+				<input type="radio" name="type" value="change">
+			</fieldset>
+			<fieldset class="right">
+
+				<label class="antal">Lägg till antal:</label>
+				<input type="text" id="amount">
+				<span>Lagersaldo:<span id="inventory"></span></span>
 				<br>
 			</fieldset>
+			<fieldset class="right">
+				<label>Kategori:</label>
+				<input type="text" id="category_name">
+				<br>
+				<label>Hyllplats:</label>
+				<input type="text" id="shelf_name">
+				<br>
+			</fieldset>
+
 			<input type="button" value="Sök">
 			<input type="button" value="Spara">
 			<br>
 
 			<fieldset class="right">
 				<label>Förlagspris:</label>
-				<input type="text">
+				<input type="text" id="f-pris">
 				<br>
 				<label>Pris:</label>
-				<input type="text">
+				<input type="text" id="price">
 				<br>
 			</fieldset>
 		</form>
