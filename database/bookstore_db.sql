@@ -2,10 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Värd: 127.0.0.1
--- Skapad: 25 nov 2013 kl 14:16
--- Serverversion: 5.5.32
--- PHP-version: 5.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Dec 02, 2013 at 02:38 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Databas: `bookstore_db`
+-- Database: `bookstore_db`
 --
 CREATE DATABASE IF NOT EXISTS `bookstore_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `bookstore_db`;
@@ -25,7 +25,7 @@ USE `bookstore_db`;
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `articles`
+-- Table structure for table `articles`
 --
 
 CREATE TABLE IF NOT EXISTS `articles` (
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
 
 --
--- Dumpning av Data i tabell `articles`
+-- Dumping data for table `articles`
 --
 
 INSERT INTO `articles` (`article_id`, `ISBN`, `title`, `publisher`, `publishing_year`, `shelf_id`, `inventory`, `language`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `articles` (`article_id`, `ISBN`, `title`, `publisher`, `publishing_
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `article_category`
+-- Table structure for table `article_category`
 --
 
 CREATE TABLE IF NOT EXISTS `article_category` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `article_category` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `authors`
+-- Table structure for table `authors`
 --
 
 CREATE TABLE IF NOT EXISTS `authors` (
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `authors` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `book_author`
+-- Table structure for table `book_author`
 --
 
 CREATE TABLE IF NOT EXISTS `book_author` (
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `book_author` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE IF NOT EXISTS `employees` (
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `inventory_event`
+-- Table structure for table `inventory_event`
 --
 
 CREATE TABLE IF NOT EXISTS `inventory_event` (
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `inventory_event` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `line_item`
+-- Table structure for table `line_item`
 --
 
 CREATE TABLE IF NOT EXISTS `line_item` (
@@ -146,13 +146,13 @@ CREATE TABLE IF NOT EXISTS `line_item` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `prices`
+-- Table structure for table `prices`
 --
 
 CREATE TABLE IF NOT EXISTS `prices` (
   `price_id` int(11) NOT NULL AUTO_INCREMENT,
   `article_id` int(11) NOT NULL,
-  `F-pris` decimal(7,2) NOT NULL,
+  `F_pris` decimal(7,2) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`price_id`),
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `shelves`
+-- Table structure for table `shelves`
 --
 
 CREATE TABLE IF NOT EXISTS `shelves` (
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `shelves` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
--- Dumpning av Data i tabell `shelves`
+-- Dumping data for table `shelves`
 --
 
 INSERT INTO `shelves` (`shelf_id`, `x`, `y`, `shelf_name`) VALUES
@@ -183,37 +183,37 @@ INSERT INTO `shelves` (`shelf_id`, `x`, `y`, `shelf_name`) VALUES
 (32, 54, 87, 'C');
 
 --
--- Restriktioner för dumpade tabeller
+-- Constraints for dumped tables
 --
 
 --
--- Restriktioner för tabell `articles`
+-- Constraints for table `articles`
 --
 ALTER TABLE `articles`
   ADD CONSTRAINT `shelflink` FOREIGN KEY (`shelf_id`) REFERENCES `shelves` (`shelf_id`);
 
 --
--- Restriktioner för tabell `article_category`
+-- Constraints for table `article_category`
 --
 ALTER TABLE `article_category`
-  ADD CONSTRAINT `categorylink` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
-  ADD CONSTRAINT `articlelink2` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`);
+  ADD CONSTRAINT `articlelink2` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`),
+  ADD CONSTRAINT `categorylink` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
--- Restriktioner för tabell `book_author`
+-- Constraints for table `book_author`
 --
 ALTER TABLE `book_author`
   ADD CONSTRAINT `articlelink` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`),
   ADD CONSTRAINT `authorlink` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`);
 
 --
--- Restriktioner för tabell `inventory_event`
+-- Constraints for table `inventory_event`
 --
 ALTER TABLE `inventory_event`
   ADD CONSTRAINT `employeelink` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`employee_id`);
 
 --
--- Restriktioner för tabell `prices`
+-- Constraints for table `prices`
 --
 ALTER TABLE `prices`
   ADD CONSTRAINT `pricelink` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`);
