@@ -1,0 +1,38 @@
+Första version:
+
+						*** script/ajaxcalls.js ***
+
+	Till de båda php-filerna bifogas ett provisorisk javascript som endast innehåller de nödvändiga ajaxanropen. Dessa kan modifieras och infogas i huvudscriptet.
+
+
+							*** search.php *** 
+
+	Innehåller "funktionerna" autoComplete och searchBook.
+
+	1.  autoComplete
+
+	Anropas automatiskt för varje keyup-event i de fält i HTML-dokumentet som markerats med class="auto".Om fältet är det generella search-fältet så söks för närvarande tabellerna som innehåller ISBN, boktitel, författarens för- och efternamn, men detta kan utökas.  
+
+	2.  searchBook
+
+	Anropas genom att klicka på "Sök" och returnerar vid träff JSON-objekt
+	som innehåller data för sidans samtliga fält. 
+
+
+
+							*** update.php ***
+
+
+	Scriptet anropas vid klick på "Spara". För närvarande ska fälten som skickas till denna funktion vara markerade med class="add".
+
+	Priset måste i nuläget antingen anges, eller sättas till 0 för automatisk uträkning
+	utifrån F_pris. (Om rutan lämnas tom avbryts ajaxanropet).   
+
+	Den kollar av om boken (isbn) redan finns registrerad, och uppdaterar då endast antalet samt själva registreringshändelsen. 
+
+	Om boken inte finns sedan tidigare läggs boken, samt eventuellt författare och kategori, in i databasen. 
+
+	Ajaxrutinen för detta anrop avbryter sig självt om inte all nödvändig data finns med. 
+
+  
+
