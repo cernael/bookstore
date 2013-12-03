@@ -1,6 +1,6 @@
 <?php
 	try {
-		$myPDO = new PDO("mysql:host=localhost;dbname=bookstore_db", "root", "");		
+		$myPDO = new PDO("mysql:host=localhost;dbname=bookstore_db", "pma", "Hur17op54");		
 		$myPDO -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	} 
 		catch(PDOException $e) {  
@@ -39,7 +39,7 @@
 	}
  
 	if ($_REQUEST["action"] == "searchBook") {
-		$_fields = "b.ISBN, a.author_last_name, a.author_first_name, b.title, b.publisher, b.publishing_year, b.inventory, c.category_name, s.shelf_name, p.F_pris, p.price";
+		$_fields = "b.ISBN, a.author_last_name, a.author_first_name, b.title, b.publisher, b.publishing_year, b.inventory, b.language, c.category_name, s.shelf_name, p.F_pris, p.price";
 		$_tables = "articles b INNER JOIN book_author ba ON b.article_id = ba.article_id INNER JOIN authors a ON ba.author_id = a.author_id INNER JOIN article_category ac ON b.article_id = ac.article_id INNER JOIN categories c ON ac.category_id = c.category_id INNER JOIN shelves s ON b.shelf_id = s.shelf_id INNER JOIN prices p ON b.article_id = p.article_id";
 		
 		$_submitted = $_REQUEST['fields'];
