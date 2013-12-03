@@ -52,13 +52,13 @@
 
 			$price;
 			if (empty($_fields['price'])) {
-				$price = $_fields['F_pris'] * 1.85 * 1.25;
+				$price = $_fields['f_pris'] * 1.85 * 1.25;
 			}
 			else {
 				$price = $_fields['price'];
 			}
 
-			$insert_8 = "INSERT INTO prices(article_id, F_pris, price) VALUES((SELECT article_id FROM articles WHERE ISBN = $_fields[isbn]), $_fields[F_pris], $price);";
+			$insert_8 = "INSERT INTO prices(article_id, f_pris, price) VALUES((SELECT article_id FROM articles WHERE ISBN = $_fields[isbn]), $_fields[f_pris], $price);";
 
 
 			$myPDO->exec($insert_1); // articles
