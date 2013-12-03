@@ -23,43 +23,43 @@
 		<h1>Inmatning bokartikel</h1>
 		<form>
 			<div class="buttons right">
-				<input class="left" type="button" value="Sök">
-				<input class="left" type="button" value="Spara">
+				<input class="left" type="button" value="Sök" action="searchBook">
+				<input class="left" type="button" value="Spara" action="addBook">
 			</div>
 			
 
 
 			<fieldset class="left">
 				<legend>Generell sök</legend>
-				<input type="text" id="search">
+				<input type="text" id="search" class="auto">
 			</fieldset>
 
 
 			<fieldset class="left">
 				<legend>Författare och bokinfo</legend>
 				<label>Efternamn:</label>
-				<input type="text" id="author_last_name">
+				<input type="text" id="author_last_name" class="auto add">
 				<br>
 				<label>Förnamn:</label>
-				<input type="text" id="author_first_name">
+				<input type="text" id="author_first_name" class="auto add">
 				<br>
 				<label>Titel:</label>
-				<input type="text" id="title">
+				<input type="text" id="title" class="auto add">
 				<br>
 				<label>Förlag:</label>
-				<input type="text" id="publisher">
+				<input type="text" id="publisher" class="add">
 				<br>
 				<label>Utgivningsår:</label>
-				<input type="text" id="publishing_year">
+				<input type="text" id="publishing_year" class="add">
 				<br>
 				<label>Språk:</label>
-				<input type="text" id="language">
+				<input type="text" id="language" class="add">
 			</fieldset>
 
 			<fieldset class="right">
 				<legend>Administrativ metadata</legend>
 				<label>ISBN:</label>
-				<input type="text" id="isbn">
+				<input type="text" id="isbn" class="auto add">
 				<br>
 				<label>Personal-ID</label>
 				<select id="employee_id"></select> <!-- Add employees dynamically -->
@@ -77,10 +77,10 @@
 			<fieldset class="right">
 				<legend>Klassificeringsinfo</legend>
 				<label>Kategori:</label>
-				<input type="text" id="category_name">
+				<input type="text" id="category_name" class="add">
 				<br>
 				<label>Hyllplats:</label>
-				<input type="text" id="shelf_name">
+				<input type="text" id="shelf_name" class="add">
 			</fieldset>
 
 
@@ -88,16 +88,16 @@
 			<fieldset class="left">
 				<legend>Prisinfo</legend>
 				<label>Förlagspris:</label>
-				<input type="text" id="f-pris">
+				<input type="text" id="f-pris" class="add">
 				<br>
 				<label>Pris:</label>
-				<input type="text" id="price">
+				<input type="text" id="price" class="add">
 			</fieldset>
 
 			<fieldset class="right	">
 				<legend>Antal och lagersaldo</legend>
 				<label class="antal">Lägg till antal:</label>
-				<input type="text" id="amount">
+				<input type="text" id="amount" class="add">
 				<span>Lagersaldo:<span id="inventory"></span></span>
 			</fieldset>
 
