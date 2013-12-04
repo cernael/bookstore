@@ -63,3 +63,24 @@ label {
 	padding-bottom: 17px;
 	margin-bottom: 44px;
 }
+
+.minicomplete {
+	background-color: #fff;
+	position: absolute;
+	width: 350px;
+	font-size: 11px;
+	border: 1px solid #000;
+}
+
+.minicomplete div {
+	cursor:pointer;
+}
+/*
+.minicomplete div:hover {
+	background:#ddd;
+}
+*/
+
+.selected {
+	background-color: #ddd;
+}

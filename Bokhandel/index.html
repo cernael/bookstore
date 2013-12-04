@@ -24,9 +24,9 @@
 		<h1>Inmatning bokartikel</h1>
 		<form>
 			<div class="buttons right">
-				<input class="left" type="button" value="Sök" action="searchBook">
-				<input class="left" type="button" value="Spara" action="addBook">
-				<input class="left" type="reset" value="Rensa">
+				<input class="left" type="button" value="Sök" id="searchButton">
+				<input class="left" type="button" value="Spara" id="saveButton">
+				<input class="left" type="reset" value="Rensa" id="resetButton">
 			</div>
 			
 
@@ -49,13 +49,13 @@
 				<input type="text" id="title" class="auto add">
 				<br>
 				<label>Förlag:</label>
-				<input type="text" id="publisher" class="add">
+				<input type="text" id="publisher" class="auto add">
 				<br>
 				<label>Utgivningsår:</label>
-				<input type="text" id="publishing_year" class="add">
+				<input type="text" id="publishing_year" class="auto add">
 				<br> 
 				<label>Språk:</label>
-				<input type="text" id="language" class="add">
+				<input type="text" id="language" class="auto add">
 			</fieldset>
 
 			<fieldset class="right">
@@ -64,12 +64,12 @@
 				<input type="text" id="isbn" class="auto add">
 				<br>
 				<label>Personal-ID</label>
-				<select id="employee_id"></select> <!-- Add employees dynamically -->
+				<select id="employee_id" class="add"></select> <!-- Add employees dynamically -->
 				<br>
-				<label>Nya varor</label>
-				<input type="radio" name="type" value="add"> <!-- make this default! -->
-				<label>Inventering</label>
-				<input type="radio" name="type" value="change">
+				<label>Registrera</label>
+				<input type="radio" name="type" value="add" id="addRadio" checked> <!-- make this default! -->
+				<label>Ändra</label>
+				<input type="radio" name="type" value="change" id="changeRadio">
 			</fieldset>
 
 
@@ -79,10 +79,10 @@
 			<fieldset class="right">
 				<legend>Klassificeringsinfo</legend>
 				<label>Kategori:</label>
-				<input type="text" id="category_name" class="add">
+				<input type="text" id="category_name" class="auto add">
 				<br>
 				<label>Hyllplats:</label>
-				<input type="text" id="shelf_name" class="add">
+				<input type="text" id="shelf_name" class="auto add">
 			</fieldset>
 
 
@@ -90,17 +90,17 @@
 			<fieldset class="left">
 				<legend>Prisinfo</legend>
 				<label>Förlagspris:</label>
-				<input type="text" id="f-pris" class="add">
+				<input type="text" id="f_pris" class="auto add">
 				<br>
 				<label>Pris:</label>
-				<input type="text" id="price" class="add">
+				<input type="text" id="price" class="auto add">
 			</fieldset>
 
 			<fieldset class="right	">
 				<legend>Antal och lagersaldo</legend>
 				<label class="antal">Lägg till antal:</label>
-				<input type="text" id="amount" class="add">
-				<span>Lagersaldo:<span id="inventory"></span></span>
+				<input type="text" id="amount" class="add"><br>
+				<label>Lagersaldo:<span id="inventory"></span></label>
 			</fieldset>
 
 		</form>
