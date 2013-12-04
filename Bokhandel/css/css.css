@@ -46,7 +46,13 @@ input[type="button"], input[type="reset"] {
 input[type="text"] {
 	background-color: #FAF5CF;
 	margin-bottom: 20px;
+	width: 175px;
 }	
+
+input[type="text"].right {
+	margin-right: 20px;
+
+}
 
 label {
 	display: inline-block;
@@ -55,7 +61,10 @@ label {
 	text-align: right;
 	margin-bottom: 20px;
 	font-weight: bold;
-	clear: both;
+}
+
+label.left {
+	width: 150px;
 }
 
 .buttons {

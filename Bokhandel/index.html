@@ -36,15 +36,19 @@
 				<input type="text" id="search" class="auto">
 			</fieldset>
 
-
 			<fieldset class="left">
-				<legend>Författare och bokinfo</legend>
-				<label>Efternamn:</label>
-				<input type="text" id="author_last_name" class="auto add">
+				<legend>Författarinfo</legend> 
+				<label class="left">Förnamn:</label>
+				<label class="left">Efternamn:</label>
+				<input type="text" id="author_first_name" class="auto add left">
+				<input type="text" id="author_last_name" class="auto add right">
 				<br>
-				<label>Förnamn:</label>
-				<input type="text" id="author_first_name" class="auto add">
-				<br>
+			</fieldset>
+
+
+
+			<fieldset class="right">
+				<legend>Bokinfo</legend>
 				<label>Titel:</label>
 				<input type="text" id="title" class="auto add">
 				<br>
@@ -56,6 +60,15 @@
 				<br> 
 				<label>Språk:</label>
 				<input type="text" id="language" class="auto add">
+			</fieldset>
+
+			<fieldset class="left">
+				<legend>Klassificeringsinfo</legend>
+				<label>Kategori:</label>
+				<input type="text" id="category_name" class="auto add">
+				<br>
+				<label>Hyllplats:</label>
+				<input type="text" id="shelf_name" class="auto add">
 			</fieldset>
 
 			<fieldset class="right">
@@ -75,15 +88,6 @@
 
 
 
-
-			<fieldset class="right">
-				<legend>Klassificeringsinfo</legend>
-				<label>Kategori:</label>
-				<input type="text" id="category_name" class="auto add">
-				<br>
-				<label>Hyllplats:</label>
-				<input type="text" id="shelf_name" class="auto add">
-			</fieldset>
 
 
 
