@@ -25,10 +25,32 @@ $(function (){
 		$('.minicomplete').remove();
 	});
 
-	$('#amount').bind('keydown', function(e){
-		if (e.keyCode == 13) {
-			$('#saveButton').click();
+	$(document).unbind('keydown').bind('keydown', function(e){
+		if ($('.minicomplete').length) {
+			var current = $('.selected');
+			if (e.keyCode == 40) {
+				if (current.next().length) {
+					current.next().attr("class", "selected");
+					current.attr("class","");
+				}
+			}
+			else if (e.keyCode == 38) {
+				if (current.prev().length) {
+					current.prev().attr("class","selected");
+					current.attr("class","");
+				}
+			}
+			else if (e.keyCode == 13) {
+				$('.minicomplete').find('.selected').click();
+			}
 		}
+		else if (e.keyCode == 13) { // Enter key bound to save for every textfield if in "changes" mode
+									// or if in "amount"-field in "register" mode
+			if ($('input[name="type"]:checked').val() == "change" || $(this).attr('id') == "#inventory") {
+				$('#saveButton').click();
+			}
+		}
+		
 	});
 
 	// Autocomplete ajax call
@@ -36,11 +58,11 @@ $(function (){
 		if (e.keyCode == 13 || (e.keyCode >= 37 && e.keyCode <= 40) || $('input[name="type"]:checked').val() == "change") {
 			return;
 		}
-		if ($(this).val().length == 0) {
+		if ($(this).val().length == 0) { // När backspace tar bort sista bokstaven i fältet tas minicomplete bort
 			$('.minicomplete').remove();
 			return;
 		}
-		var field = $(this).attr('id');
+		var field = $(this).attr('id'); 
 		$.ajax({
 			url: "search.php",
 			method:"post",
@@ -66,16 +88,12 @@ $(function (){
 
 	// 'Sök'-button ajax call
 	$('#searchButton').click(function(){
-		
 		var submit = {};
-
-
 		$('.auto').each(function(){
 			if (this.value != "") {
 				submit[this.id] = this.value;
 			} 
 		});
-
 		$.ajax({
 			url: "search.php",
 			method: "post",
@@ -85,8 +103,8 @@ $(function (){
 				fields: submit,
 			},
 			success:function(data){
-				currentData = data[0];
-				renderResult(data);
+				currentData = data;
+				renderResult(currentData);
 			},
 			error:function(errorData){
 				alert("Ett fel har inträffat.\nKontakta systemansvarig!");
@@ -96,23 +114,37 @@ $(function (){
 
 	// 'Spara'-button ajax call
 	$('#saveButton').click(function(){
-		var fields = {
-			"type": $('input[name="type"]:checked').val(), 
-			"article_id": currentData['article_id'],
-
-		};
+		var fields = { 
+			"type": $('input[name="type"]:checked').val(),
+			"article_id": undefined,
+			"authors": [],
+			"categories": [] 
+		};		
+		if (currentData){
+			fields.article_id = currentData[0].article_id;
+		}
 		var stop = false, errorMsg;
 
 		if (fields.type == 'add') {
 			$('.add').each(function(){
-				if (this.value != "") {
-					fields[this.id] = this.value;
-				} 
-				else {
-					if (this.id != "price") // Price is not required
-						stop = true;
-						errorMsg = "Alla fält utom 'Pris' måste vara ifyllda före artikeln kan sparas till databasen!";
+				fields[this.id] = this.value;
+				if (this.value == "" && this.id != "price") { // All fields except "price" is required
+					stop = true;
+					errorMsg = "Alla fält utom 'Pris' måste vara ifyllda före artikeln kan sparas till databasen!";
 				}
+			});
+			if (!fields.price) {
+				fields.price =  fields.f_pris * 1.85 * 1.25;
+			} 
+			$('.authors').each(function(){
+				var author = {
+					"author_first_name": $(this).find('#author_first_name').val(),
+					"author_last_name": $(this).find('#author_last_name').val()
+				};
+				fields.authors.push(author); 
+			});
+			$('.categories').each(function(){
+				fields.categories.push($(this).val());
 			});
 		}
 		else if (fields.type == 'change') {
@@ -122,7 +154,7 @@ $(function (){
 			}
 			else {
 				$('.add').each(function(){
-					if (this.value != currentData[this.id]) {
+					if (this.value != currentData[0][this.id]) {
 						fields[this.id] = this.value;
 					}
 				}); 	
@@ -194,23 +226,4 @@ function showMenu(dataList, sender) {
 		$('.selected').attr("class","");
 		$(this).attr("class","selected");
 	})
-
-	$(document).unbind('keydown').bind('keydown', function(e){
-		var current = $('.selected');
-		if (e.keyCode == 40) {
-			if (current.next().length) {
-				current.next().attr("class", "selected");
-				current.attr("class","");
-			}
-		}
-		else if (e.keyCode == 38) {
-			if (current.prev().length) {
-				current.prev().attr("class","selected");
-				current.attr("class","");
-			}
-		}
-		else if (e.keyCode == 13) {
-			menu.find('.selected').click();
-		}
-	});
 }
