@@ -23,9 +23,13 @@ $(function (){
 
 	$('html').click(function(){
 		$('.minicomplete').remove();
-	})
+	});
 
-	
+	$('#amount').bind('keydown', function(e){
+		if (e.keyCode == 13) {
+			$('#saveButton').click();
+		}
+	});
 
 	// Autocomplete ajax call
 	$('.auto').unbind('keyup').bind('keyup',function(e){
@@ -137,6 +141,11 @@ $(function (){
 				}
 			},
 			success:function(data){
+				var isbn = $('form').find('#isbn').val();
+				$('form').find('input[type="text"]').val('');
+				$('form').find('#isbn').val(isbn);
+				$('#searchButton').click();
+
 				if (fields.type == 'change') {
 					$('#addRadio').click();
 					alert("Ändring genomförd!");
@@ -155,7 +164,8 @@ $(function (){
 function renderResult(data) {
 	for (var i in data[0]) {
 		$('form').find('#' + i).val(data[0][i]);
-	} 
+	}
+	$('form').find('#inventory').text(data[0]['inventory']); 
 } 
 
 function showMenu(dataList, sender) {

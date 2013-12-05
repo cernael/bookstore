@@ -1,6 +1,6 @@
 <?php
 	try {
-		$myPDO = new PDO("mysql:host=localhost;dbname=bookstore_db", "root", "");		
+		$myPDO = new PDO("mysql:host=localhost;dbname=bookstore_db", "pma", "Hur17op54");		
 		$myPDO -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	} 
 		catch(PDOException $e) {  
@@ -22,11 +22,11 @@
 		$_fields = "b.isbn, a.author_last_name, a.author_first_name, b.title";
 		$_tables = "articles b INNER JOIN book_author ba ON b.article_id = ba.article_id INNER JOIN authors a ON ba.author_id = a.author_id";
 		if ($_sender == "search") {			
-			$_conditions .= str_replace(",", " LIKE '%$_fragment%' OR", $_fields);
+			$_conditions .= str_replace(",", " LIKE '$_fragment%' OR", $_fields);
 		}
 		else {  // Autocomplete limited to the active searchfield
 			$_queryField = (strstr($_sender, "author") ? "a." : "b.") . $_sender; 
-			$_conditions .= "$_queryField LIKE '%$_fragment%'";
+			$_conditions .= "$_queryField LIKE '$_fragment%'";
 		}
 	}
  
